@@ -11,9 +11,16 @@ nltk.download('stopwords')
 nltk.download('wordnet')
 
 # Load model and vectorizer
-model = pickle.load(open("sentiment_model.pkl", "rb"))
-tfidf = pickle.load(open("tfidf_vectorizer.pkl", "rb"))
-label_encoder = pickle.load(open("label_encoder.pkl", "rb"))
+import os
+
+# Get path to current file directory
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Load model and encoders
+model = pickle.load(open(os.path.join(BASE_DIR, "sentiment_model.pkl"), "rb"))
+tfidf = pickle.load(open(os.path.join(BASE_DIR, "tfidf_vectorizer.pkl"), "rb"))
+label_encoder = pickle.load(open(os.path.join(BASE_DIR, "label_encoder.pkl"), "rb"))
+
 
 # Preprocessing function
 stop_words = set(stopwords.words("english"))
